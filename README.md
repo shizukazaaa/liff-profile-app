@@ -55,23 +55,17 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     async function main() {
-      // 1. เริ่มต้น LIFF
       await liff.init({ liffId: "2007267285-0Ro3ZRYE" });
 
-      // 2. ตรวจสอบว่าล็อกอินหรือยัง
       if (!liff.isLoggedIn()) {
         liff.login();
       } else {
-        // 3. ดึงข้อมูลโปรไฟล์
         const profile = await liff.getProfile();
-
-        // 4. นำข้อมูลไปแสดงผล
         document.getElementById("pictureUrl").src = profile.pictureUrl;
         document.getElementById("displayName").textContent = profile.displayName;
         document.getElementById("userId").textContent = "User ID: " + profile.userId;
       }
 
-      // 5. ตั้งค่าปุ่มปิด
       document.getElementById("closeButton").addEventListener('click', () => {
         liff.closeWindow();
       });
